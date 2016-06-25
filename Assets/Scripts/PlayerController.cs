@@ -17,16 +17,18 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         playerAnimator.SetFloat(
             "direction",
             Input.GetAxis("Horizontal")
         );
         playerAnimator.SetFloat(
             "speed",
-            Input.GetAxis("Vertical")
+            //Input.GetAxis("Vertical")
+            Vector3.Magnitude(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")))
         );
 
-        if ((Input.GetKeyDown(KeyCode.Space))
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 3"))
              && playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion"))
             playerAnimator.SetTrigger("jump");
 
@@ -37,5 +39,13 @@ public class PlayerController : MonoBehaviour {
             capsule.height = playerAnimator.GetFloat("ColliderHeight");
         else
             capsule.height = startColliderHeight;
+
     }
+
+
+    public void Die() {
+        playerAnimator.GetComponent<Collider>().enabled = false;
+        playerAnimator.SetTrigger("die");
+    }
+
 }

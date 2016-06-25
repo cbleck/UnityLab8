@@ -18,8 +18,8 @@ public class EnemyController : MonoBehaviour {
     private EnemyState currentState;
     private float currentDistance;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
 
         enemyAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -29,9 +29,9 @@ public class EnemyController : MonoBehaviour {
         StartCoroutine("Patrol");
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         currentDistance = Vector3.Distance(transform.position, player.transform.position);
 
@@ -40,13 +40,22 @@ public class EnemyController : MonoBehaviour {
             currentState = EnemyState.CHASING;
             StopCoroutine("Patrol");
             agent.SetDestination(player.transform.position);
+
         }
-        else if(currentState == EnemyState.CHASING) {
+        else if (currentState == EnemyState.CHASING) {
             currentState = EnemyState.PATROL;
             StartCoroutine("Patrol");
         }
         enemyAnimator.SetFloat("speed", agent.velocity.magnitude);
-	}
+    }
+
+    void OnCollisionEnter(Collision enemyCollision) {
+
+        if (enemyCollision.transform.tag.Equals("Player")) {
+            enemyCollision.gameObject.SendMessage("Die", SendMessageOptions.RequireReceiver);
+        }
+
+    }
 
     IEnumerator Patrol() {
      
@@ -61,4 +70,5 @@ public class EnemyController : MonoBehaviour {
             StartCoroutine("Patrol");
 
    }
+
 }
