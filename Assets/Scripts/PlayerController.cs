@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour {
             playerAnimator.SetTrigger("wave");
 #endif
 #if UNITY_IOS || UNITY_ANDROID
-#endif
         accel = Input.acceleration;
 
         if (Input.touchCount > 0)
@@ -75,7 +74,7 @@ public class PlayerController : MonoBehaviour {
         else {
             playerAnimator.SetFloat("speed", 0f);
         }
-
+#endif
 
 
         if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))

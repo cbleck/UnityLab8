@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour {
 
@@ -29,6 +29,6 @@ public class SceneLoader : MonoBehaviour {
     }
 
     public void loadFirstLevel() {
-        EditorSceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 }
