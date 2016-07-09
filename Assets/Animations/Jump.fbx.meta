@@ -587,8 +587,8 @@ ModelImporter:
             inSlope: 0
             outSlope: 0
             tangentMode: 0
-          - time: 0.6372585
-            value: 0.0034482754
+          - time: 0.47797355
+            value: 0.0022838286
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -604,12 +604,12 @@ ModelImporter:
             tangentMode: 0
           preInfinity: 2
           postInfinity: 2
-          rotationOrder: 4
+          rotationOrder: 0
       events: []
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 256
     - serializedVersion: 16
       name: Test
       takeName: Jump

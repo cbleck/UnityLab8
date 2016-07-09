@@ -11,5 +11,6 @@ public class CameraCinematic : MonoBehaviour {
 
         Time.timeScale = 1f;
         GetComponent<FirstPersonCameraBetter>().enabled = true;
+        GetComponent<Animator>().enabled = false;
     }
 }
