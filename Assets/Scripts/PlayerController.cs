@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
     public float shootSpeed;
+	public GameObject bullet;
 
     private Animator playerAnimator;
     private CapsuleCollider capsule;
@@ -55,10 +56,11 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator DieandReplayCoroutine() {
 
-        playerAnimator.GetComponent<Collider>().enabled = false;
+        capsule.enabled = false;
         playerAnimator.SetTrigger("die");
 
         yield return new WaitForSeconds(2.5f);
+	capsule.enabled = true;
         SceneManager.LoadScene("UnityAnimation");
     }
 
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(1);
         GameObject bullet = transform.GetChild(0).GetChild(0).gameObject;
 
-        bullet.transform.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * shootSpeed, ForceMode.Impulse);
+        //bullet.transform.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * shootSpeed, ForceMode.Impulse);
 
     }
 
